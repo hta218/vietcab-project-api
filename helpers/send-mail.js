@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const moment = require('moment');
-const mtz = require('moment-timezone');
 const nodemailer = require("nodemailer");
 
 const createTransport = (adminInfos) => {
