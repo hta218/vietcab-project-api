@@ -138,6 +138,19 @@ openApiRouters.get('/approve/:driverId', (req, res) => {
   });
 });
 
+openApiRouters.delete('/delete/:driverId', (req, res) => {
+  const driverId = req.params.driverId;
+
+  Driver.remove({ "_id" : driverId }, (err) => {
+    if (err) {
+      res.json({success: 0, message: "Unable to delete driver"});
+    } else {
+      res.json({success: 1, message: "Deleted driver"});
+    }
+  });
+
+});
+
 openApiRouters.post('/driver', (req, res) => {
   var body = req.body;
   var name = body.name;
