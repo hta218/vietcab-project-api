@@ -119,7 +119,17 @@ openApiRouters.get('/approve/:driverId', (req, res) => {
         if (err) {
           res.json({success: 0, message: 'Unable to send email'});
         } else {
-          foundDriver.update({approval: true});
+          Driver.update({
+             _id: driverId
+           }, {
+             $set: { 'approval': true }
+           }, (err) => {
+             if (err) {
+               console.log('Unable to update driver info');
+             } else {
+               console.log('Update driver info successfully');
+             }
+           });
           res.json({success: 1, message: 'Mail sent successfully', driver: foundDriver});
         }
       });
