@@ -145,7 +145,7 @@ openApiRouters.delete('/delete/:driverId', (req, res) => {
     if (err) {
       res.json({success: 0, message: "Unable to delete driver"});
     } else {
-      res.json({success: 1, message: "Deleted driver"});
+      res.json({success: 1, message: "Deleted driver", driverId: driverId});
     }
   });
 
