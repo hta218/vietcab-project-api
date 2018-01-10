@@ -119,7 +119,8 @@ openApiRouters.get('/approve/:driverId', (req, res) => {
         if (err) {
           res.json({success: 0, message: 'Unable to send email'});
         } else {
-          res.json({success: 1, message: 'Mail sent successfully'});
+          foundDriver.update({approval: true});
+          res.json({success: 1, message: 'Mail sent successfully', driver: foundDriver});
         }
       });
       /////////////////////////////////////////
@@ -135,6 +136,7 @@ openApiRouters.post('/driver', (req, res) => {
   var city = body.city;
   var recommender = body.recommender;
   var code = body.code;
+  var approval = false;
 
   var searchName = name;
   searchName= searchName.toLowerCase();
@@ -157,7 +159,8 @@ openApiRouters.post('/driver', (req, res) => {
     email,
     city,
     recommender,
-    code
+    code,
+    approval
   });
 
   driver.save((err, savedDriver) => {

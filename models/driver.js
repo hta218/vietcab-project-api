@@ -8,7 +8,8 @@ var driverSchema = new Schema({
   email: String,
   city: String,
   recommender: String,
-  code: String
+  code: String,
+  approval: Boolean
 });
 
 driverSchema.index({searchName: "text"});
